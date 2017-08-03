@@ -90,6 +90,18 @@ app.put("/blogs/:id", function(req, res) {
     })
 })
 
+//delete route
+app.delete("/blogs/:id", function(req, res) {
+    Blog.findByIdAndRemove(req.params.id, function(err) {
+        if(err) {
+            res.redirect("/blogs"); //change later on to have message that says didnt delete
+        } else {
+            res.redirect("/blogs");
+        }
+    })
+    }
+)
+
 //check if it works at beginning
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("SERVER IS RUNNING");
